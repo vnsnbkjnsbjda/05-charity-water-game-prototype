@@ -41,7 +41,7 @@ html, body {
 }
 
 .overlay-content {
-    background: #FFC907;
+    background: #fff;
     padding: 40px 60px;
     border-radius: 16px;
     text-align: center;
@@ -85,13 +85,6 @@ html, body {
     background: #2E9DF7;
 }
 
-#friendshipUpgradeScreen .overlay-content {
-    background: #FFC907 !important;
-    color: #222;
-    border: 3px solid #2E9DF7;
-}
-
-#upgradeOptions .upgrade-btn,
 .upgrade-btn {
     font-size: 1.3em;
     padding: 16px 32px;
@@ -123,6 +116,22 @@ html, body {
     border-radius: 8px;
     cursor: pointer;
     margin-top: 20px;
+}
+
+#extractionPopup {
+    position: fixed;
+    width: 300px;
+    height: 100px;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.9);
+    padding: 16px 24px;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    font-size: 1.2em;
+    color: #333;
+    z-index: 20;
 }
 
 #joystick-container {

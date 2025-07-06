@@ -168,18 +168,6 @@ function showFriendshipUpgrade() {
     choices.forEach((upgrade) => {
         const btn = document.createElement("button");
         btn.className = "upgrade-btn";
-        btn.style.background = "#fffbe6";
-        btn.style.border = "2px solid #FFC907";
-        btn.style.borderRadius = "12px";
-        btn.style.fontSize = "1.3em";
-        btn.style.padding = "16px 32px";
-        btn.style.margin = "16px";
-        btn.style.cursor = "pointer";
-        btn.style.display = "block";
-        btn.style.width = "90%";
-        btn.style.maxWidth = "350px";
-        btn.style.marginLeft = "auto";
-        btn.style.marginRight = "auto";
         btn.innerHTML = upgrade.desc;
         btn.onclick = function() {
             upgrade.apply();
@@ -212,27 +200,6 @@ let extractionPoint = null;
 let extractionActive = false;
 let winPending = false;
 
-// Add extraction popup if not present
-if (!document.getElementById("extractionPopup")) {
-    const popup = document.createElement("div");
-    popup.id = "extractionPopup";
-    popup.style.position = "fixed";
-    popup.style.top = "30px";
-    popup.style.left = "50%";
-    popup.style.transform = "translateX(-50%)";
-    popup.style.background = "#FFC907";
-    popup.style.color = "#222";
-    popup.style.padding = "18px 36px";
-    popup.style.borderRadius = "16px";
-    popup.style.fontSize = "1.3em";
-    popup.style.fontWeight = "bold";
-    popup.style.boxShadow = "0 4px 32px rgba(0,0,0,0.18)";
-    popup.style.display = "none";
-    popup.style.zIndex = "20";
-    popup.innerHTML = "🚁 Extraction point revealed! Reach it to win!";
-    document.body.appendChild(popup);
-}
-
 function showExtractionPopup() {
     const popup = document.getElementById("extractionPopup");
     popup.style.display = "block";
@@ -243,22 +210,21 @@ function showExtractionPopup() {
 
 function spawnExtractionPoint() {
     // Place on the edge of the visible canvas, not the world map
-    const radius = 30;
+    const radius = 100;
     let x, y;
     const edge = Math.floor(Math.random() * 4);
-    // The player is always at (0,0) in world coordinates, so the visible area is:
-    // x: [-cWidth/2, cWidth/2], y: [-cHeight/2, cHeight/2]
+
     if (edge === 0) { // top
         x = Math.random() * (cWidth - 2 * radius) - (cWidth / 2 - radius);
-        y = -cHeight / 2 + radius;
+        y = -cHeight / 2 + radius*2;
     } else if (edge === 1) { // bottom
         x = Math.random() * (cWidth - 2 * radius) - (cWidth / 2 - radius);
-        y = cHeight / 2 - radius;
+        y = cHeight / 2 - radius*2;
     } else if (edge === 2) { // left
-        x = -cWidth / 2 + radius;
+        x = -cWidth / 2 + radius*2;
         y = Math.random() * (cHeight - 2 * radius) - (cHeight / 2 - radius);
     } else { // right
-        x = cWidth / 2 - radius;
+        x = cWidth / 2 - radius*2;
         y = Math.random() * (cHeight - 2 * radius) - (cHeight / 2 - radius);
     }
     extractionPoint = { x, y, radius };

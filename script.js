@@ -115,10 +115,11 @@ function draw(){
         const enemy = newGame.enemies[i];
         if (playerHitsEnemy(newGame.player, enemy)) {
             // Progress bar decreases on hit
-            newGame.score -= 50;
+            newGame.score -= 10;
 
             if (newGame.progress - newGame.progressRate >= 0) {
-                newGame.progress -= newGame.progressRate;
+              // Decrease progress by a fixed amount
+                newGame.progress -= 20;
             } else
                 newGame.progress = 0;
 
@@ -259,21 +260,21 @@ function draw(){
 
     // Draw health bar
     ctx.fillStyle = "red";
-    ctx.fillRect(cWidth/2 - newGame.maxHealth/2, cHeight-100, newGame.maxHealth, 10); // Background for
+    ctx.fillRect(cWidth/2 - newGame.maxHealth/2, cHeight-100, newGame.maxHealth, 20); // Background for
     ctx.fillStyle = "lightgreen";
-    ctx.fillRect(cWidth/2 - newGame.maxHealth/2, cHeight-100, newGame.player.health, 10); // Background for progress bar
+    ctx.fillRect(cWidth/2 - newGame.maxHealth/2, cHeight-100, newGame.player.health, 20); // Background for progress bar
     
     // Draw progress bar
-    ctx.fillStyle = "lightgray";
-    ctx.fillRect(cWidth/2 - newGame.maxProgress/2, 10, newGame.maxProgress, 10); // Background for progress bar
-    ctx.fillStyle = "cyan";
-    ctx.fillRect(cWidth/2 - newGame.maxProgress/2, 10, newGame.progress, 10); // Background for progress bar
+    ctx.fillStyle = "gray";
+    ctx.fillRect(cWidth/2 - newGame.maxProgress/2, 10, newGame.maxProgress, 20); // Background for progress bar
+    ctx.fillStyle = "#8BD1CB";
+    ctx.fillRect(cWidth/2 - newGame.maxProgress/2, 10, newGame.progress, 20); // Background for progress bar
 
     // Draw friendship meter
-    ctx.fillStyle = "darkblue";
-    ctx.fillRect(cWidth/2 - newGame.maxFriendship/2, 30, newGame.maxFriendship, 10); // Background for friendship meter
+    ctx.fillStyle = "purple";
+    ctx.fillRect(cWidth/2 - newGame.maxFriendship/2, 30, newGame.maxFriendship, 20); // Background for friendship meter
     ctx.fillStyle = "pink";
-    ctx.fillRect(cWidth/2 -  newGame.maxFriendship/2, 30, newGame.friendship, 10); // Friendship meter (0-250)
+    ctx.fillRect(cWidth/2 -  newGame.maxFriendship/2, 30, newGame.friendship, 20); // Friendship meter (0-250)
 
     // Extraction point logic
     if (newGame.progress >= newGame.maxProgress && !extractionActive) {

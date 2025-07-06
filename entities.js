@@ -43,16 +43,9 @@ class Player{
         const py = cHeight / 2 + this.y;
 
         // Calculate angle to mouse
-        if (!joystickAim.firing) {
-            // Use right joystick angle
-            // this.faceTheta = joystickAim.angle;
-            const angle = Math.atan2(mouse.y - py, mouse.x - px);
-            this.faceTheta = angle;
-        } else {
-            // Default to mouse aiming
-            const angle = Math.atan2(mouse.y - py, mouse.x - px);
-            this.faceTheta = angle;
-        }
+        let angle = Math.atan2(mouse.y - py, mouse.x - px);
+        angle = joystickAim.firing ? joystickAim.angle : angle; // Use joystick angle if firing
+        this.faceTheta = angle; // facing direction for projectiles
 
         ctx.save();
         ctx.translate(px, py);
@@ -76,9 +69,10 @@ class Enemy {
         this.type = type;
         this.x = x;
         this.y = y;
+        
         if (type === 1) { // Sludge Slinger
-            this.width = 36;
-            this.height = 36;
+            this.width = 70;
+            this.height = 70;
             this.color = "brown";
             this.health = 80;
             this.maxHealth = 80;
@@ -86,15 +80,15 @@ class Enemy {
             this.rateOfFire = 3000;
             this.lastShot = 0;
         } else if (type === 2) { // Virus Tank
-            this.width = 40;
-            this.height = 40;
+            this.width = 50;
+            this.height = 50;
             this.color = "purple";
             this.health = 350;
             this.maxHealth = 350;
             this.speed = 0.77;
         } else if (type === 3) { // Bacteria Scout
-            this.width = 28;
-            this.height = 28;
+            this.width = 30;
+            this.height = 30;
             this.color = "gray";
             this.health = 60;
             this.maxHealth = 60;
