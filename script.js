@@ -4,16 +4,23 @@ canvas = document.getElementById("canvas");
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
+let cWidth = canvas.width;
+let cHeight = canvas.height;
+let mapWidth = canvas.width; // World map width
+let mapHeight = canvas.height; // World map height
+
 window.addEventListener('resize', () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
+    cWidth = canvas.width;
+    cHeight = canvas.height;
+    mapWidth = canvas.width;
+    mapHeight = canvas.height;
 });
 
-const cWidth = ctx.canvas.width;
-const cHeight = ctx.canvas.height;
+
 const refreshRate = 1;
-const mapWidth = canvas.width; // World map width
-const mapHeight = canvas.height; // World map height
+
 
 let fireActive = true;
 let gameStarted = false;
@@ -26,7 +33,7 @@ let currTime = 0; // Current elapsed time in seconds - add to elapsed time in Ga
 class Game{
     constructor() {
         this.progress = 0; // Game progress (0-500)
-        this.friendship = 0; // Friendship meter
+        this.friendship = cWidth/2; // Friendship meter
         this.maxProgress = cWidth/2; // Max progress to reach extraction
         this.maxFriendship = cWidth/2; // Max friendship for upgrade
         this.maxHealth = cWidth/2; // Player max health
@@ -253,16 +260,16 @@ function draw(){
     // Draw timer
     ctx.font = "bold 18px sans-serif";
     ctx.fillStyle = "white";
-    ctx.textAlign = "left";
-    ctx.fillText(`Time: ${newGame.elapsedTime}s`, 20, 30);
-    ctx.fillText(`Score: ${newGame.score}`, 20, 60);
+    ctx.textAlign = "center";
+    ctx.fillText(`Time: ${newGame.elapsedTime}s`, cWidth/2, 70);
+    ctx.fillText(`Score: ${newGame.score}`, cWidth/2, 90);
 
 
     // Draw health bar
     ctx.fillStyle = "red";
-    ctx.fillRect(cWidth/2 - newGame.maxHealth/2, cHeight-100, newGame.maxHealth, 20); // Background for
+    ctx.fillRect(cWidth/2 - newGame.maxHealth/2, cHeight-(cHeight/4), newGame.maxHealth, 20); // Background for
     ctx.fillStyle = "lightgreen";
-    ctx.fillRect(cWidth/2 - newGame.maxHealth/2, cHeight-100, newGame.player.health, 20); // Background for progress bar
+    ctx.fillRect(cWidth/2 - newGame.maxHealth/2, cHeight-(cHeight/4), newGame.player.health, 20); // Background for progress bar
     
     // Draw progress bar
     ctx.fillStyle = "gray";
