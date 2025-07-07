@@ -33,7 +33,7 @@ let currTime = 0; // Current elapsed time in seconds - add to elapsed time in Ga
 class Game{
     constructor() {
         this.progress = 0; // Game progress (0-500)
-        this.friendship = cWidth/2; // Friendship meter
+        this.friendship = 0; // Friendship meter
         this.maxProgress = cWidth/2; // Max progress to reach extraction
         this.maxFriendship = cWidth/2; // Max friendship for upgrade
         this.maxHealth = cWidth/2; // Player max health
@@ -266,7 +266,7 @@ function draw(){
 
 
     // Draw health bar
-    ctx.fillStyle = "red";
+    ctx.fillStyle = "#F5402C";
     ctx.fillRect(cWidth/2 - newGame.maxHealth/2, cHeight-(cHeight/4), newGame.maxHealth, 20); // Background for
     ctx.fillStyle = "lightgreen";
     ctx.fillRect(cWidth/2 - newGame.maxHealth/2, cHeight-(cHeight/4), newGame.player.health, 20); // Background for progress bar
@@ -280,7 +280,7 @@ function draw(){
     // Draw friendship meter
     ctx.fillStyle = "purple";
     ctx.fillRect(cWidth/2 - newGame.maxFriendship/2, 30, newGame.maxFriendship, 20); // Background for friendship meter
-    ctx.fillStyle = "pink";
+    ctx.fillStyle = "#F16061";
     ctx.fillRect(cWidth/2 -  newGame.maxFriendship/2, 30, newGame.friendship, 20); // Friendship meter (0-250)
 
     // Extraction point logic
